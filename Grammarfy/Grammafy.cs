@@ -10,24 +10,31 @@ namespace Grammarfy
 {
     public static class Grammafy
     {
+        /// <summary>
+        /// Should Grammafy use contractions? Defaults to false. e.g would not => wouldn't etc.
+        /// </summary>
         public static bool UseContractions { get; set; } = false;
+
+        /// <summary>
+        /// Should Grammafy apply casing to string? Defaults to Retain.
+        /// </summary>
         public static Case Case { get; set; } = Case.Retain;
 
-        public static string Generate(int total, Word word, Tense tense)
-        {
-            var value = "";
-
-
-            return value;
-        }
-
+        /// <summary>
+        /// This uses the type name of the entity.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">The object Grammafy uses to get the type name from.</param>
+        /// <param name="total">Used to concatinate 's' on the end of the type name.</param>
+        /// <param name="case">Upper, Lower or Retain.</param>
+        /// <returns></returns>
         public static string Plural<T>(this T entity, int total, Case? @case = null) where T : class
         {
             return Generate(total, entity.GetType().Name, @case);
         }
 
         /// <summary>
-        /// This will generate the correct grammar, accounting for the total.
+        /// This will generate the correct grammar, extending from the total.
         /// </summary>
         /// <param name="total"></param>
         /// <param name="entityName"></param>
